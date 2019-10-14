@@ -1,0 +1,42 @@
+html {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-family: "Consolas", serif;
+}
+
+body {
+    margin: 0px;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    background-color: #f0f0f0; 
+    display: flex;
+    justify-content: space-around;
+}
+
+nav a {
+    margin: auto;
+    padding: 12px;
+    text-decoration: none;
+    text-align: center;
+    flex-grow: 1;
+}
+
+nav a:hover {
+    background-color: aquamarine;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+article {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
