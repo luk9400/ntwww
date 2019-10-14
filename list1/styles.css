@@ -50,3 +50,12 @@ article {
     align-items: center;
     min-width: 80%;
 }
+
+img {
+    max-width: 95%;
+    height: auto;
+}
+
+h3 {
+    margin: 10px;
+}
