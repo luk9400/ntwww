@@ -22,6 +22,7 @@ nav {
     background-color: var(--primary-color); 
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 nav a {
