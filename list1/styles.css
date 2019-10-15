@@ -8,7 +8,7 @@ html {
     width: 100%;
     padding: 0px;
     margin: 0px;
-    font-family: "Consolas", serif;
+    font-family: "Monospace", monospace;
 }
 
 body {
@@ -57,7 +57,6 @@ article {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* min-width: 80%; */
 }
 
 img {
