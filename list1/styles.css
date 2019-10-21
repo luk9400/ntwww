@@ -23,6 +23,9 @@ nav {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    border-bottom-style: solid;
+    border-bottom-width: 1px; 
+    border-bottom-color: var(--background-color);
 }
 
 nav a {
@@ -67,4 +70,22 @@ img {
 
 h3 {
     margin: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    max-width: 90%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container p {
+    /* max-width: 50%; */
+    padding: 10px;
+}
+
+.project-container {
+    max-width: 900px;
 }
