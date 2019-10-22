@@ -61,6 +61,7 @@ article {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    max-width: 1280px;
 }
 
 img {
@@ -70,22 +71,4 @@ img {
 
 h3 {
     margin: 10px;
-}
-
-.container {
-    display: flex;
-    flex-direction: row;
-    max-width: 90%;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.container p {
-    /* max-width: 50%; */
-    padding: 10px;
-}
-
-.project-container {
-    max-width: 900px;
 }
