@@ -39,9 +39,10 @@
                 </ul>
             </div>
             <h2>
-                Przykład jak nie pisać funkcji
+                Przykład użycia mojego ulubionego programu <em>sed</em>
             </h2>
-            <script src="https://gist.github.com/luk9400/8fe2b80ae0ab6a5ad4b874e207999e06.js"></script>
+
+            <pre><code>ls | sed 's/\(.*\)/"\1"/' | sed 'p;s/\(.*\)/\L\1/' | xargs -n2 mv -n --</code></pre>
         </article>
     </main>
 </body>
