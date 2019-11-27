@@ -87,14 +87,9 @@ function swap(arr, a, b) {
 init();
 draw();
 canvas.addEventListener('click', e => {
-    if (e.layerX || e.layerX == 0) {
-        mouseX = e.layerX - canvas.offsetLeft;
-        mouseY = e.layerY - canvas.offsetTop;
-    }
-    else if (e.offsetX || e.offsetX == 0) {
-        mouseX = e.offsetX - canvas.offsetLeft;
-        mouseY = e.offsetY - canvas.offsetTop;
-    }
+    let rect = canvas.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
 
     movePuzzle(mouseX, mouseY);
 });
