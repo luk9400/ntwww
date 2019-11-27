@@ -78,6 +78,32 @@ function movePuzzle(mouseX, mouseY) {
     });
 }
 
+function hoverPuzzle(mouseX, mouseY) {
+    puzzles.forEach((puzzle, index) => {
+        if (mouseX > puzzle.xPos && mouseX < (puzzle.xPos + d) && mouseY > puzzle.yPos && mouseY < (puzzle.yPos + d)) {
+            if (!puzzle.red) {
+                if ((index - len) >= 0 && puzzles[index - len].red) { // top
+                    hover(puzzle);
+                } else if ((index + len) < (len * len) && puzzles[index + len].red) { // bottom
+                    hover(puzzle);
+                } else if (((index + 1) % len) != 0 && puzzles[index + 1].red) { // right
+                    hover(puzzle);
+                } else if (((index - 1) % len) != (len - 1) && index != 0 && puzzles[index - 1].red) { // left
+                    hover(puzzle);
+                }
+            }
+        }
+    });
+}
+
+function hover(obj) {
+    context.save();
+    context.globalAlpha = .4;
+    context.fillStyle = "#009900";
+    context.fillRect(obj.xPos, obj.yPos, d, d);
+    context.restore();
+}
+
 function swap(arr, a, b) {
     let tmp = arr[b];
     arr[b] = arr[a];
@@ -92,4 +118,12 @@ canvas.addEventListener('click', e => {
     mouseY = e.clientY - rect.top;
 
     movePuzzle(mouseX, mouseY);
+});
+
+canvas.addEventListener('mouseover', e => {
+    let rect = canvas.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+
+    hoverPuzzle(mouseX, mouseY);
 });
