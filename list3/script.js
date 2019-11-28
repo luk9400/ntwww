@@ -109,9 +109,10 @@ function swap(arr, a, b) {
     arr[b] = arr[a];
     arr[a] = tmp;
 }
-
-init();
-draw();
+image.addEventListener('load', e => {
+    init();
+    draw();
+});
 canvas.addEventListener('click', e => {
     let rect = canvas.getBoundingClientRect();
     mouseX = e.clientX - rect.left;
