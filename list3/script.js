@@ -120,10 +120,10 @@ canvas.addEventListener('click', e => {
     movePuzzle(mouseX, mouseY);
 });
 
-canvas.addEventListener('mouseover', e => {
+canvas.addEventListener('mousemove', e => {
     let rect = canvas.getBoundingClientRect();
-    mouseX = e.clientX - rect.left;
-    mouseY = e.clientY - rect.top;
+    mouseXh = e.clientX - rect.left;
+    mouseYh = e.clientY - rect.top;
 
-    hoverPuzzle(mouseX, mouseY);
+    hoverPuzzle(mouseXh, mouseYh);
 });

@@ -6,7 +6,12 @@ body {
 }
 
 canvas {
-    width: 400px;
-    height: 400px;
+    width: 49%;
+    height: auto;
     border: 1px solid black;
+}
+
+img {
+    width: auto;
+    height: auto;
 }
