@@ -11,15 +11,12 @@ const d = width / len;
 let puzzles = [];
 let redPuzzle = { xPos: 0, yPos: 0 };
 
-let mouseX = null;
-let mouseY = null;
-
 function init() {
     for (let i = 0; i < len; i++) {
         let sy = d * i;
         for (let j = 0; j < len; j++) {
             let sx = d * j;
-            puzzles.push({ sx: sx, sy: sy, red: false });
+            puzzles.push({ sx: sx, sy: sy, red: false, hovered: false });
             context.drawImage(image, sx, sy, d, d, sx, sy, d, d);
         }
     }
@@ -34,7 +31,15 @@ function draw() {
     puzzles.forEach(puzzle => {
         puzzle.xPos = xPos;
         puzzle.yPos = yPos;
+        if (puzzle.hovered) {
+            context.save();
+            context.globalAlpha = 0.5;
+        }
         context.drawImage(image, puzzle.sx, puzzle.sy, d, d, xPos, yPos, d, d);
+        if (puzzle.hovered) {
+            context.restore();
+            puzzle.hovered = false;
+        }
         xPos += d;
         if (xPos >= width) {
             xPos = 0;
@@ -83,25 +88,18 @@ function hoverPuzzle(mouseX, mouseY) {
         if (mouseX > puzzle.xPos && mouseX < (puzzle.xPos + d) && mouseY > puzzle.yPos && mouseY < (puzzle.yPos + d)) {
             if (!puzzle.red) {
                 if ((index - len) >= 0 && puzzles[index - len].red) { // top
-                    hover(puzzle);
+                    puzzle.hovered = true;
                 } else if ((index + len) < (len * len) && puzzles[index + len].red) { // bottom
-                    hover(puzzle);
+                    puzzle.hovered = true;
                 } else if (((index + 1) % len) != 0 && puzzles[index + 1].red) { // right
-                    hover(puzzle);
+                    puzzle.hovered = true;
                 } else if (((index - 1) % len) != (len - 1) && index != 0 && puzzles[index - 1].red) { // left
-                    hover(puzzle);
+                    puzzle.hovered = true;
                 }
+                draw();
             }
         }
     });
-}
-
-function hover(obj) {
-    context.save();
-    context.globalAlpha = .4;
-    context.fillStyle = "#009900";
-    context.fillRect(obj.xPos, obj.yPos, d, d);
-    context.restore();
 }
 
 function swap(arr, a, b) {
@@ -113,18 +111,21 @@ image.addEventListener('load', e => {
     init();
     draw();
 });
+
 canvas.addEventListener('click', e => {
     let rect = canvas.getBoundingClientRect();
-    mouseX = e.clientX - rect.left;
-    mouseY = e.clientY - rect.top;
+    let mouseX = e.clientX - rect.left;
+    let mouseY = e.clientY - rect.top;
+
+    console.log(mouseX + "   " + mouseY)
 
     movePuzzle(mouseX, mouseY);
 });
 
 canvas.addEventListener('mousemove', e => {
     let rect = canvas.getBoundingClientRect();
-    mouseXh = e.clientX - rect.left;
-    mouseYh = e.clientY - rect.top;
+    let mouseXh = e.clientX - rect.left;
+    let mouseYh = e.clientY - rect.top;
 
     hoverPuzzle(mouseXh, mouseYh);
 });
