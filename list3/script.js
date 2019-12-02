@@ -57,14 +57,13 @@ function shuffle() {
     for (let i = 0; i < Math.pow(3, len); i++) {
         let dir = Math.floor(Math.random() * Math.floor(4));
         let idx = redPuzzle.index
-        console.log('dlugosc: ' + puzzles.length)
-        console.log('idx: ' + idx);
-        console.log('len: ' + len);
+        // console.log('dlugosc: ' + puzzles.length)
+        // console.log('idx: ' + idx);
+        // console.log('len: ' + len);
 
         switch (dir) {
             case 0: { //top
-                console.log(idx - len >= 0)
-                if (idx - len >= 0) {
+                if ((idx - len) >= 0) {
                     redPuzzle.xPos = puzzles[idx - len].xPos;
                     redPuzzle.yPos = puzzles[idx - len].yPos;
                     redPuzzle.index -= len;
@@ -78,8 +77,7 @@ function shuffle() {
                 break;
             }
             case 1: { //bottom
-                console.log(idx + len < len * len)
-                if (idx + len < len * len) {
+                if ((idx + len) < (len * len)) {
                     redPuzzle.xPos = puzzles[idx + len].xPos;
                     redPuzzle.yPos = puzzles[idx + len].yPos;
                     redPuzzle.index += len;
@@ -215,7 +213,7 @@ document.querySelectorAll('div img').forEach(img => {
 });
 
 document.getElementById('btn').addEventListener('click', e => {
-    len = document.getElementById('len').value;
+    len = parseInt(document.getElementById('len').value);
     start();
 });
 
