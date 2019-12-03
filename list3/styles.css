@@ -5,19 +5,15 @@ body {
     flex-wrap: wrap;
 }
 
-canvas {
-    /* width: 49%;
-    height: auto; */
-    /* width: 400px;
-    height: 400px; */
+canvas {    
     border: 1px solid black;
 }
 
 #hint {
-    width: 30%;
+    width: 40%;
     height: auto;
 }
 
-div img:hover {
+.gallery img:hover {
     opacity: 0.5;
 }

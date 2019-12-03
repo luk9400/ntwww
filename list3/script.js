@@ -1,13 +1,14 @@
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 
-if (window.screen.orientation.type === "landscape-primary") {
-    canvas.width = (window.innerWidth) * 0.40;
-} else {
-    canvas.width = (window.innerWidth) * 0.8;
-}
-canvas.height = canvas.width;
+// if (window.screen.orientation.type === "landscape-primary") {
+//     canvas.width = (window.innerWidth) * 0.40;
+// } else {
+//     canvas.width = (window.innerWidth) * 0.8;
+// }
+// canvas.height = canvas.width;
 
+let firstInit = true;
 let image = new Image();
 image.src = './images/pic1.jpg';
 
@@ -62,12 +63,9 @@ function draw() {
 
 function shuffle() {
     for (let i = 0; i < Math.pow(3, len); i++) {
-        //for (let i = 0; i < 2; i++) {
+    //for (let i = 0; i < 20; i++) {
         let dir = Math.floor(Math.random() * Math.floor(4));
         let idx = redPuzzle.index
-        // console.log('dlugosc: ' + puzzles.length)
-        // console.log('idx: ' + idx);
-        // console.log('len: ' + len);
 
         switch (dir) {
             case 0: { //top
@@ -130,10 +128,11 @@ function shuffle() {
                 break;
             }
         }
+        // console.log("idx: " + redPuzzle.index);
+        // console.log("x: " + redPuzzle.xPos);
+        // console.log("y: " + redPuzzle.yPos);
     }
-    console.log(redPuzzle.index);
-    console.log(redPuzzle.xPos)
-    console.log(redPuzzle.yPos)
+
 }
 
 function movePuzzle(mouseX, mouseY) {
@@ -193,10 +192,17 @@ function swap(arr, a, b) {
 }
 
 image.addEventListener('load', e => {
-    init();
-    draw();
-    shuffle();
-    draw();
+    if (firstInit) {
+        init();
+        draw();
+        shuffle();
+        draw();
+        let idx = redPuzzle.index
+        redPuzzle.xPos = puzzles[idx].xPos;
+        redPuzzle.yPos = puzzles[idx].yPos;
+        draw();
+        firstInit = false
+    }
 });
 
 canvas.addEventListener('click', e => {
@@ -219,7 +225,7 @@ canvas.addEventListener('mousemove', e => {
     hoverPuzzle(mouseXh, mouseYh);
 });
 
-document.querySelectorAll('div img').forEach(img => {
+document.querySelectorAll('.gallery img').forEach(img => {
     img.addEventListener('click', e => {
         image.src = img.src;
         document.getElementById('hint').src = img.src;
@@ -241,11 +247,15 @@ function start() {
     draw();
     shuffle();
     draw();
+    let idx = redPuzzle.index
+    redPuzzle.xPos = puzzles[idx].xPos;
+    redPuzzle.yPos = puzzles[idx].yPos;
+    draw();
 }
 
 function loadImage(id) {
     let promise = new Promise((resolve, reject) => {
-        let elem = document.querySelector(`div :nth-child(${id})`);
+        let elem = document.querySelector(`.gallery :nth-child(${id})`);
         elem.src = `images/pic${id}.jpg`;
         elem.onload = () => { resolve(id) }
         elem.onerror = () => { reject(id) }
