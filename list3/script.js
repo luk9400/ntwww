@@ -1,6 +1,13 @@
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 
+if (window.screen.orientation.type === "landscape-primary") {
+    canvas.width = (window.innerWidth) * 0.40;
+} else {
+    canvas.width = (window.innerWidth) * 0.8;
+}
+canvas.height = canvas.width;
+
 let image = new Image();
 image.src = './images/pic1.jpg';
 
@@ -55,6 +62,7 @@ function draw() {
 
 function shuffle() {
     for (let i = 0; i < Math.pow(3, len); i++) {
+        //for (let i = 0; i < 2; i++) {
         let dir = Math.floor(Math.random() * Math.floor(4));
         let idx = redPuzzle.index
         // console.log('dlugosc: ' + puzzles.length)
@@ -123,6 +131,9 @@ function shuffle() {
             }
         }
     }
+    console.log(redPuzzle.index);
+    console.log(redPuzzle.xPos)
+    console.log(redPuzzle.yPos)
 }
 
 function movePuzzle(mouseX, mouseY) {
@@ -190,16 +201,20 @@ image.addEventListener('load', e => {
 
 canvas.addEventListener('click', e => {
     let rect = canvas.getBoundingClientRect();
-    let mouseX = e.clientX - rect.left;
-    let mouseY = e.clientY - rect.top;
+    //let mouseX = e.clientX - rect.left;
+    //let mouseY = e.clientY - rect.top;
+    let mouseX = e.offsetX;
+    let mouseY = e.offsetY;
 
     movePuzzle(mouseX, mouseY);
 });
 
 canvas.addEventListener('mousemove', e => {
     let rect = canvas.getBoundingClientRect();
-    let mouseXh = e.clientX - rect.left;
-    let mouseYh = e.clientY - rect.top;
+    //let mouseXh = e.clientX - rect.left;
+    //let mouseYh = e.clientY - rect.top;
+    let mouseXh = e.offsetX;
+    let mouseYh = e.offsetY;
 
     hoverPuzzle(mouseXh, mouseYh);
 });
@@ -227,3 +242,19 @@ function start() {
     shuffle();
     draw();
 }
+
+function loadImage(id) {
+    let promise = new Promise((resolve, reject) => {
+        let elem = document.querySelector(`div :nth-child(${id})`);
+        elem.src = `images/pic${id}.jpg`;
+        elem.onload = () => { resolve(id) }
+        elem.onerror = () => { reject(id) }
+    })
+}
+
+Promise.all([loadImage(1), loadImage(2), loadImage(3), loadImage(4), loadImage(5), loadImage(6), loadImage(7), loadImage(8), loadImage(9), loadImage(10), loadImage(11), loadImage(12)]).then(() => {
+    console.log("Images loaded")
+}).catch(() => {
+    console.log("Failed to load images");
+});
+
