@@ -27,7 +27,7 @@ function init() {
         let sy = dWidth * i;
         for (let j = 0; j < len; j++) {
             let sx = dWidth * j;
-            puzzles.push({ sx: sx * ratio, sy: sy * ratio, red: false, hovered: false });
+            puzzles.push({ sx: sx * ratio, sy: sy * ratio, red: false, hovered: false, position: len * i + j });
             context.drawImage(image, sx * ratio, sy * ratio, sWidth, sWidth, sx, sy, dWidth, dWidth);
         }
     }
@@ -63,7 +63,7 @@ function draw() {
 
 function shuffle() {
     for (let i = 0; i < Math.pow(3, len); i++) {
-    //for (let i = 0; i < 20; i++) {
+    //for (let i = 0; i < 1; i++) {
         let dir = Math.floor(Math.random() * Math.floor(4));
         let idx = redPuzzle.index
 
@@ -161,6 +161,9 @@ function movePuzzle(mouseX, mouseY) {
                     swap(puzzles, index, index - 1);
                 }
                 draw();
+                if (isSolved()) {
+                    window.alert("You won!");
+                }
             }
         }
     });
@@ -268,3 +271,11 @@ Promise.all([loadImage(1), loadImage(2), loadImage(3), loadImage(4), loadImage(5
     console.log("Failed to load images");
 });
 
+function isSolved() {
+    for (let i = 0; i < len * len - 1; i++) {
+        if (puzzles[i].position >= puzzles[i + 1].position) {
+            return false;
+        }
+    }
+    return true;
+}
