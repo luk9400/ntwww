@@ -1,8 +1,14 @@
+html {
+    display: flex;
+    justify-content: center;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
+    max-width: 1000px;
 }
 
 canvas {    

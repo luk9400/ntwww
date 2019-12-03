@@ -62,8 +62,8 @@ function draw() {
 }
 
 function shuffle() {
-    for (let i = 0; i < Math.pow(3, len); i++) {
-    //for (let i = 0; i < 1; i++) {
+    //for (let i = 0; i < Math.pow(3, len); i++) {
+    for (let i = 0; i < 20; i++) {
         let dir = Math.floor(Math.random() * Math.floor(4));
         let idx = redPuzzle.index
 
@@ -128,9 +128,9 @@ function shuffle() {
                 break;
             }
         }
-        // console.log("idx: " + redPuzzle.index);
-        // console.log("x: " + redPuzzle.xPos);
-        // console.log("y: " + redPuzzle.yPos);
+        console.log("idx: " + redPuzzle.index);
+        console.log("x: " + redPuzzle.xPos);
+        console.log("y: " + redPuzzle.yPos);
     }
 
 }
@@ -200,10 +200,10 @@ image.addEventListener('load', e => {
         draw();
         shuffle();
         draw();
-        let idx = redPuzzle.index
-        redPuzzle.xPos = puzzles[idx].xPos;
-        redPuzzle.yPos = puzzles[idx].yPos;
-        draw();
+        // let idx = redPuzzle.index
+        // redPuzzle.xPos = puzzles[idx].xPos;
+        // redPuzzle.yPos = puzzles[idx].yPos;
+        // draw();
         firstInit = false
     }
 });
@@ -250,10 +250,10 @@ function start() {
     draw();
     shuffle();
     draw();
-    let idx = redPuzzle.index
-    redPuzzle.xPos = puzzles[idx].xPos;
-    redPuzzle.yPos = puzzles[idx].yPos;
-    draw();
+    // let idx = redPuzzle.index
+    // redPuzzle.xPos = puzzles[idx].xPos;
+    // redPuzzle.yPos = puzzles[idx].yPos;
+    // draw();
 }
 
 function loadImage(id) {
