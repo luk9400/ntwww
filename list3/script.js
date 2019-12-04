@@ -1,13 +1,6 @@
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 
-// if (window.screen.orientation.type === "landscape-primary") {
-//     canvas.width = (window.innerWidth) * 0.40;
-// } else {
-//     canvas.width = (window.innerWidth) * 0.8;
-// }
-// canvas.height = canvas.width;
-
 let firstInit = true;
 let image = new Image();
 image.src = './images/pic1.jpg';
@@ -128,9 +121,6 @@ function shuffle() {
                 break;
             }
         }
-        console.log("idx: " + redPuzzle.index);
-        console.log("x: " + redPuzzle.xPos);
-        console.log("y: " + redPuzzle.yPos);
     }
 
 }
@@ -200,10 +190,6 @@ image.addEventListener('load', e => {
         draw();
         shuffle();
         draw();
-        // let idx = redPuzzle.index
-        // redPuzzle.xPos = puzzles[idx].xPos;
-        // redPuzzle.yPos = puzzles[idx].yPos;
-        // draw();
         firstInit = false
     }
 });
@@ -250,10 +236,6 @@ function start() {
     draw();
     shuffle();
     draw();
-    // let idx = redPuzzle.index
-    // redPuzzle.xPos = puzzles[idx].xPos;
-    // redPuzzle.yPos = puzzles[idx].yPos;
-    // draw();
 }
 
 function loadImage(id) {
