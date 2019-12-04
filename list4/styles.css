@@ -1,0 +1,26 @@
+html {
+    background-color: #bebebe;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    width: 80%;
+}
+
+p {
+    background-color: #cecece;
+    padding: 5px;
+}
+
+ol, ul {
+    background-color: #cecece;
+    margin: 0px;
+}
+
+@media (max-width: 720px) {
+    body {
+        width: 100%;
+    }
+}
