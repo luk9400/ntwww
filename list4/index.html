@@ -19,6 +19,18 @@
         };
     </script>
 
+    <nav>
+        <div>
+            <a href='index.html'>Schemat Goldwasser-Micali</a>
+            <a href='shamir.html'>Dzielenie sekretu</a>
+        </div>
+        <div>
+            <a href='#goldwasser'>Schemat Goldwasser-Micali</a>
+            <a href='#residue'>Reszta kwadratowa</a>
+            <a href='#symbols'>Symbol Legendre'a i Jacobiego</a>
+        </div>
+    </nav>
+
     <section id='goldwasser'>
         <h1>Schemat Goldwasser-Micali szyfrowania probabilistycznego</h1>
         <h4>Algorytm generowania kluczy</h4>
@@ -133,50 +145,6 @@
                 <li></li>
                 Algorytm działa w czasie $\mathcal{O}((\lg n)^2)$ operacji bitowych.
             </ol>
-        </p>
-    </section>
-
-    <section id='shamir'>
-        <h1>Schemat progowy $(t, n)$ dzielenia sekretu Shamira</h1>
-        <p>
-            <b>Cel:</b> Zaufana Trzecia Strona $T$ ma sekret $S \geq 0$, który chce podzielić pomiędzy $n$ uczestników
-            tak,
-            aby dowolnych $t$ spośród niech mogło sekret odtworzyć.
-        </p>
-        <p>
-            <b>Faza inicjalizacji:</b>
-            <ul>
-                <li>$T$ wybiera liczbę pierwszą $p \ge max(S, n)$ i definiuje $a_0 = S$,</li>
-                <li>$T$ wybiera losowo i niezależnie $t - 1$ współczynników $a_1, ..., a_{t-1} \in \mathbb{Z}_p$,</li>
-                <li>$T$ definiuje wielomian nad $\mathbb{Z}_p$:
-                    $$f(x) = a_0 + \sum^{t-1}_{j = 1} a_jx^j,$$
-                </li>
-                <li>Dla $1 \leq i \leq n$ Zaufana Trzecia Strona $T$ wybiera losowo $x_i \in \mathbb{Z}_p$, oblicza:
-                    $S_i =
-                    f(x_i) \mod p$ i bezpiecznie przekazuje parę $(x_i, S_i)$ uzytkownikowi $P_i$.</li>
-            </ul>
-        </p>
-        <p>
-            <b>Faza łączenia udziałów w sekret:</b> Dowolna grupa $t$ lub więcej użytkowników łączy swoje udziały - $t$
-            róznych punktów $(x_i, S_i)$ wielomianu $f$ i dzięki interpolacji Lagrange'a odzyskuje sekret $S = a_0 =
-            f(0)$.
-        </p>
-    </section>
-
-
-    <section id='lagrange'>
-        <h1>Interpolacja Lagrange'a</h1>
-        <p>
-            Mając dane $t$ różnych punktów $(x_i, y_i)$ nienanego wielomianu $f$ stopnia mniejszego od $t$ możemy
-            policzyć
-            jego współczynniki korzystając ze wzoru:
-            $$f(x) = \sum^t_{i = 1}\left( y_i \prod_{1 \leq j \leq t, j\neq i} \frac{x - x_j}{x_i - x_j} \right) \mod
-            p$$
-            <b>Wskazówka:</b> w schemacie Shamira, aby odzyskać sekret <i>S</i>, użytkownicy nie muszą znać całego
-            wielomianu $f$. Wsstawiając do wzoru na iterpolację Lagrange'a $x = 0$, dostajemy wersję uproszczoną, ale
-            wystarczającą aby policzyć sekret $S = f(0)$:
-            $$f(x) = \sum^t_{i = 1} \left(y_i \prod_{1 \leq j \leq t, j\neq i} \frac{x_j}{x_j - x_i} \right) \mod p$$
-
         </p>
     </section>
 </body>
