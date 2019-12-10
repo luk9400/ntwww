@@ -1,7 +1,7 @@
 html {
     background-color: #bebebe;
     width: 100%;
-    
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 section {
     background-color: #cecece;
     margin: 10px;
-    padding: 5px;
+    padding: 20px;
     width: 80%;
 }
 

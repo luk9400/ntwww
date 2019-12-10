@@ -69,12 +69,12 @@
             Mając dane $t$ różnych punktów $(x_i, y_i)$ nienanego wielomianu $f$ stopnia mniejszego od $t$ możemy
             policzyć
             jego współczynniki korzystając ze wzoru:
-            $$f(x) = \sum^t_{i = 1}\left( y_i \prod_{1 \leq j \leq t, j\neq i} \frac{x - x_j}{x_i - x_j} \right) \mod
+            $$f(x) = \sum^t_{i = 1}\left( y_i \prod_{1 \leqslant j \leqslant t,\, j\neq i} \frac{x - x_j}{x_i - x_j} \right) \mod
             p$$
             <b>Wskazówka:</b> w schemacie Shamira, aby odzyskać sekret <i>S</i>, użytkownicy nie muszą znać całego
             wielomianu $f$. Wsstawiając do wzoru na iterpolację Lagrange'a $x = 0$, dostajemy wersję uproszczoną, ale
             wystarczającą aby policzyć sekret $S = f(0)$:
-            $$f(x) = \sum^t_{i = 1} \left(y_i \prod_{1 \leq j \leq t, j\neq i} \frac{x_j}{x_j - x_i} \right) \mod p$$
+            $$f(x) = \sum^t_{i = 1} \left(y_i \prod_{1 \leqslant j \leqslant t,\, j\neq i} \frac{x_j}{x_j - x_i} \right) \mod p$$
 
         </p>
     </section>
