@@ -15,6 +15,9 @@
         window.MathJax = {
             tex: {
                 inlineMath: [['$', '$']]
+            },
+            options: {
+                skipHtmlTags: ["script", "style", "textarea"]
             }
         };
     </script>
@@ -30,6 +33,10 @@
             <a href='#symbols'>Symbol Legendre'a i Jacobiego</a>
         </div>
     </nav>
+
+    <header>
+        <h1>Zakamarki kryptografii</h1>
+    </header>
 
     <section id='goldwasser'>
         <h1>Schemat Goldwasser-Micali szyfrowania probabilistycznego</h1>
@@ -48,7 +55,13 @@
             Chcąc zaszyfrować wiadomość $m$ przy uzyciu klucza publicznego $(n, y)$ wykonaj kroki:
             <ol type='a'>
                 <li>Przedstaw $m$ w postaci łańcycha binarnego $m = m_1m_2...m_t$ długości $t$</li>
-                <li></li>
+                <li>
+                    <pre>
+For $i$ from $1$ to $t$ do
+    wybierz losowe $x \in \mathbb{Z}^*_n$
+    If $m_i = 1$ then set $c_i \leftarrow yx^2$ mod $n$
+    Otherwise set $c_i \leftarrow x^2$ mod $n$</pre>
+                </li>
                 <li>Kryptogram wiadomości $m$ stanowi $c = (c_1, c_2, ..., c_t)$</li>
             </ol>
         </p>
@@ -56,7 +69,13 @@
         <p>
             Chcąc odzyskać wiadomości z kryptogramu $c$ przy uzyciu klucza prywatnego $(p, q)$ wykonaj kroki:
             <ol type='a'>
-                <li></li>
+                <li>
+                    <pre>
+For $i$ from $1$ to $t$ do
+    policz symbol Legendre'a $c_i = \left( \frac{c_i}{p} \right)$
+    If $c_i = 1$ then set $m_i \leftarrow 0$
+    Otherwise set $m_i \leftarrow 1$</pre>
+                </li>
                 <li>Zdeszyfrowana wiadomość to $m = m_1m_2...m_t$</li>
             </ol>
         </p>
@@ -134,15 +153,33 @@
             <b>Algorytm obliczania symbolu Jacobiego $\left( \frac{a}{n} \right)$ (i Legendre'a)</b> dla nieparzystej
             liczby
             całkowitej $n \geq 3$ oraz całkowitego $0 \leq a \le n$
-            <pre>JACOBI(a, n)</pre>
+            <pre>JACOBI($a, n$)</pre>
             <ol type='a'>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>
+                    <pre>
+If $a = 0$ then return $0$</pre>
+                </li>
+                <li>
+                    <pre>If $a = 1$ then return $1$</pre>
+                </li>
+                <li>
+                    <pre>Write $a = 2^ea_1$, gdzie $a_1$ nieparzyste</pre>
+                </li>
+                <li>
+                    <pre>If $e$ parzyste set $set \leftarrow 1$
+Otherwise set $s \leftarrow 1$ if $n \equiv 1 $ or $7 ($mod$8)$, or set
+$s \leftarrow -1$ if $n \equiv 3$ or $5 ($mod$8)$</pre>
+                </li>
+                <li>
+                    <pre>If $n \equiv 3 ($mod$4)$ and $a_1 \equiv 3($mod$3)$ then set $s \leftarrow -s$</pre>
+                </li>
+                <li>
+                    <pre>Set $n_1 \leftarrow n$mod$a_1$</pre>
+                </li>
+                <li>
+                    <pre>If $a_1 = 1$ then return $s$
+Otherwise reurn $s \cdot$JACOBI($n_1, a_1$)</pre>
+                </li>
             </ol>
             Algorytm działa w czasie $\mathcal{O}((\lg n)^2)$ operacji bitowych.
         </p>
