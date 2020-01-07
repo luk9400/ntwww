@@ -1,0 +1,83 @@
+html {
+    background-color: #bebebe;
+    width: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#menu {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+#menu p {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+#menu form {
+    width: 50%;
+}
+
+#menu form input {
+    width: 100%;
+    height: 100%;
+}
+
+section {
+    background-color: #cecece;
+    margin: 10px;
+    padding: 20px;
+    width: 80%;
+}
+
+nav {
+    background-color: #cecece; 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+nav div {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border-bottom-style: solid;
+    border-bottom-width: 1px; 
+    border-bottom-color: #bebebe;
+}
+
+nav div a {
+    margin: auto;
+    padding: 12px;
+    text-decoration: none;
+    text-align: center;
+    flex-grow: 1;
+}
+
+nav div a:hover {
+    background-color: #bebebe;
+}
+
+nav div a:link {
+    color: inherit;
+}
+
+nav div a:visited {
+    color: inherit;
+}
+
+@media (max-width: 720px) {
+    section {
+        width: 95%;
+    }
+}

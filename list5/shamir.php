@@ -1,0 +1,230 @@
+<?php 
+  session_start();
+//   include('counter.php');
+?>
+
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="300; url=http://localhost:8000/logout.php">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./styles.css" rel="stylesheet" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Lista 5</title>
+</head>
+
+<body>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            }
+        };
+    </script>
+
+    <div id="menu">
+      <?php
+        if (isset($_SESSION["username"])) {
+      ?>
+        <p>Witaj <?= $_SESSION["username"] ?>! </p>
+        <form action="logout.php">
+          <input type="submit" value="Wyloguj"/>
+        </form>
+      <?php
+        } else {
+      ?>
+        <form action="registration.php">
+          <input type="submit" value="Zarejestruj"/>
+        </form>
+        <form action="login.php">
+          <input type="submit" value="Zaloguj"/>
+        </form>
+      <?php
+        }
+      ?>
+    </div>
+
+    <nav>
+        <div>
+            <a href='index.php'>Schemat Goldwasser-Micali</a>
+            <a href='shamir.php'>Dzielenie sekretu</a>
+        </div>
+        <div>
+            <a href='#shamir'>Schemat progowy $(t, n)$ dzielenia sekretu Shamira</a>
+            <a href='#lagrange'>Interpolacja Lagrange'a</a>
+            <a href='#example'>Przykład</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Zakamarki kryptografii</h1>
+    </header>
+
+    <section id='shamir'>
+        <h1>Schemat progowy $(t, n)$ dzielenia sekretu Shamira</h1>
+        <p>
+            <b>Cel:</b> Zaufana Trzecia Strona $T$ ma sekret $S \geq 0$, który chce podzielić pomiędzy $n$ uczestników
+            tak,
+            aby dowolnych $t$ spośród niech mogło sekret odtworzyć.
+        </p>
+        <p>
+            <b>Faza inicjalizacji:</b>
+            <ul>
+                <li>$T$ wybiera liczbę pierwszą $p \ge max(S, n)$ i definiuje $a_0 = S$,</li>
+                <li>$T$ wybiera losowo i niezależnie $t - 1$ współczynników $a_1, ..., a_{t-1} \in \mathbb{Z}_p$,</li>
+                <li>$T$ definiuje wielomian nad $\mathbb{Z}_p$:
+                    $$f(x) = a_0 + \sum^{t-1}_{j = 1} a_jx^j,$$
+                </li>
+                <li>Dla $1 \leq i \leq n$ Zaufana Trzecia Strona $T$ wybiera losowo $x_i \in \mathbb{Z}_p$, oblicza:
+                    $S_i =
+                    f(x_i) \mod p$ i bezpiecznie przekazuje parę $(x_i, S_i)$ uzytkownikowi $P_i$.</li>
+            </ul>
+        </p>
+        <p>
+            <b>Faza łączenia udziałów w sekret:</b> Dowolna grupa $t$ lub więcej użytkowników łączy swoje udziały - $t$
+            róznych punktów $(x_i, S_i)$ wielomianu $f$ i dzięki interpolacji Lagrange'a odzyskuje sekret $S = a_0 =
+            f(0)$.
+        </p>
+
+        <div class="comments">
+          
+          <h2>Komentarze</h2>
+
+          <ul>
+
+          <?php
+            $db = new SQLite3("database.db");
+            $stmt = $db->prepare("select * from comments where aid=:aid");
+            $stmt->bindValue(":aid", "shamir");
+            
+            $returned_set = $stmt->execute();
+            while($row = $returned_set->fetchArray(SQLITE3_ASSOC)) {
+              echo "<li class='comment'>";
+              echo "<p>" . $row['COMMENT'] . "</p>";
+              echo "<small> ~ " . $row['AUTHOR'] . "</small>";
+              echo "</li>";
+            }
+          ?>
+
+          </ul>
+
+          <?php if (isset($_SESSION["username"])) { ?>
+            <form method="POST" action="/comment.php" id="usrform">
+              <input hidden=true name="article" value="shamir">
+              <input type="text" name="content">
+              <input type="submit" value="Wyślij">
+            </form>
+          <?php } ?>
+        </div>
+    </section>
+
+
+    <section id='lagrange'>
+        <h1>Interpolacja Lagrange'a</h1>
+        <p>
+            Mając dane $t$ różnych punktów $(x_i, y_i)$ nienanego wielomianu $f$ stopnia mniejszego od $t$ możemy
+            policzyć
+            jego współczynniki korzystając ze wzoru:
+            $$f(x) = \sum^t_{i = 1}\left( y_i \prod_{1 \leqslant j \leqslant t,\, j\neq i} \frac{x - x_j}{x_i - x_j} \right) \mod
+            p$$
+            <b>Wskazówka:</b> w schemacie Shamira, aby odzyskać sekret <i>S</i>, użytkownicy nie muszą znać całego
+            wielomianu $f$. Wsstawiając do wzoru na iterpolację Lagrange'a $x = 0$, dostajemy wersję uproszczoną, ale
+            wystarczającą aby policzyć sekret $S = f(0)$:
+            $$f(x) = \sum^t_{i = 1} \left(y_i \prod_{1 \leqslant j \leqslant t,\, j\neq i} \frac{x_j}{x_j - x_i} \right) \mod p$$
+
+        </p>
+
+        <div class="comments">
+          
+          <h2>Komentarze</h2>
+
+          <ul>
+
+          <?php
+            $db = new SQLite3("database.db");
+            $stmt = $db->prepare("select * from comments where aid=:aid");
+            $stmt->bindValue(":aid", "lagrange");
+            
+            $returned_set = $stmt->execute();
+            while($row = $returned_set->fetchArray(SQLITE3_ASSOC)) {
+              echo "<li class='comment'>";
+              echo "<p>" . $row['COMMENT'] . "</p>";
+              echo "<small> ~ " . $row['AUTHOR'] . "</small>";
+              echo "</li>";
+            }
+          ?>
+
+          </ul>
+
+          <?php if (isset($_SESSION["username"])) { ?>
+            <form method="POST" action="/comment.php" id="usrform">
+              <input hidden=true name="article" value="lagrange">
+              <input type="text" name="content">
+              <input type="submit" value="Wyślij">
+            </form>
+          <?php } ?>
+        </div>
+    </section>
+
+    <section id="example">
+        <h1>Przykład</h1>
+        <h4>Inicjalizacja</h4>
+        Niech sekret $S = 1234$. Dzielimy go między 6 osób $(n=6)$, z czego 3 będą mogły go zrekonstruować $(t=3)$.
+        Losowo wybieramy $t-1=2$ liczb: $166$ i $94$. Wygenerowany wielomian jest zatem postaci:
+        $$f(x) = 1234 + 166x +94x^2$$
+        Wybieramy 6 punktów z wielomianu:
+        $(1,1494), (2,1942), (3,2578), (4,3402), (5,4414), (6, 5614)$.
+        <h4>Łączenie udziałów</h4>
+        Z wcześniej wygenerowanych wybierzmy $t$ punktów, np: $(2,1942), (4,3402), (5,4414)$. Korzystamy ze wzoru:
+        $$
+        S = 1942\cdot \frac{4}{4-2} \cdot \frac{5}{5-2}
+        + 3402\cdot \frac{5}{5-4} \cdot \frac{2}{2-4}
+        + 4414\cdot \frac{2}{2-5} \cdot \frac{4}{4-5}
+        =
+        $$
+
+        $$
+        = 1942 \cdot \frac{10}{3} + 3402 \cdot (-5) + 4414 \cdot \frac{8}{3} =
+        $$
+
+        $$
+        = 1234
+        $$
+
+        <div class="comments">
+          
+          <h2>Komentarze</h2>
+
+          <ul>
+
+          <?php
+            $db = new SQLite3("database.db");
+            $stmt = $db->prepare("select * from comments where aid=:aid");
+            $stmt->bindValue(":aid", "example");
+            
+            $returned_set = $stmt->execute();
+            while($row = $returned_set->fetchArray(SQLITE3_ASSOC)) {
+              echo "<li class='comment'>";
+              echo "<p>" . $row['COMMENT'] . "</p>";
+              echo "<small> ~ " . $row['AUTHOR'] . "</small>";
+              echo "</li>";
+            }
+          ?>
+
+          </ul>
+
+          <?php if (isset($_SESSION["username"])) { ?>
+            <form method="POST" action="/comment.php" id="usrform">
+              <input hidden=true name="article" value="example">
+              <input type="text" name="content">
+              <input type="submit" value="Wyślij">
+            </form>
+          <?php } ?>
+        </div>
+    </section>
+</body>
+
+</html>
