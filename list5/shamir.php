@@ -1,6 +1,5 @@
 <?php 
   session_start();
-//   include('counter.php');
 ?>
 
 <!DOCTYPE html>
@@ -225,6 +224,10 @@
           <?php } ?>
         </div>
     </section>
+
+    <?php
+        include('counter.php');
+    ?>
 </body>
 
 </html>
