@@ -228,6 +228,10 @@
     <?php
         include('counter.php');
     ?>
+
+    <p>
+        Korzystając z tej strony zgadzasz się na wykorzystanie ciasteczek.
+    </p>
 </body>
 
 </html>

@@ -309,6 +309,10 @@ Otherwise reurn $s \cdot$JACOBI($n_1, a_1$)</pre>
     <?php
         include('counter.php');
     ?>
+
+    <p>
+        Korzystając z tej strony zgadzasz się na wykorzystanie ciasteczek.
+    </p>
 </body>
 
 </html>
