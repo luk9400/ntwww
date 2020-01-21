@@ -1,0 +1,125 @@
+html {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Roboto Mono", monospace; }
+
+body {
+  margin: 0px;
+  background-color: #404040; }
+
+.hamburger {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0; }
+
+.wide-nav {
+  display: none; }
+
+nav {
+  position: sticky;
+  top: 0;
+  background-color: #8c8c8c;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #404040; }
+
+.dropbtn {
+  background-color: #8c8c8c;
+  padding: 16px;
+  font-size: 16px;
+  border: none; }
+
+.dropdown {
+  position: relative;
+  display: inline-block; }
+  .dropdown:hover .dropdown-content {
+    display: block; }
+  .dropdown:hover .dropbtn {
+    background-color: #bfbfbf; }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #bfbfbf;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1; }
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; }
+    .dropdown-content a:hover {
+      background-color: #ddd; }
+
+pre {
+  overflow-x: auto;
+  max-width: 80%; }
+
+main {
+  display: flex;
+  justify-content: center; }
+
+article {
+  display: flex;
+  flex-direction: column;
+  background-color: #8c8c8c;
+  margin: 20px;
+  padding: 10px;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px; }
+
+img {
+  max-width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  margin: 10px; }
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+h3,
+h2 {
+  margin: 10px; }
+
+span {
+  font-size: small; }
+
+@media only screen and (min-width: 720px) {
+  .about {
+    display: flex;
+    flex-direction: row; } }
+@media only screen and (min-width: 900px) {
+  .about {
+    display: flex;
+    flex-direction: row; }
+
+  .wide-nav {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; }
+
+  nav .wide-nav a {
+    margin: auto;
+    padding: 12px;
+    text-decoration: none;
+    text-align: center;
+    flex-grow: 1; }
+    nav .wide-nav a:hover {
+      background-color: #bfbfbf; }
+    nav .wide-nav a:link {
+      color: inherit; }
+    nav .wide-nav a:visited {
+      color: inherit; }
+
+  .dropdown {
+    display: none; } }
+
+/*# sourceMappingURL=styles.css.map */

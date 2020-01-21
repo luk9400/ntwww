@@ -35,6 +35,17 @@ body {
   display: none;
 }
 
+nav {
+  position: sticky;
+  top: 0;
+  background-color: $primary-color; 
+  display: flex;
+  justify-content: flex-start;
+  border-bottom-style: solid;
+  border-bottom-width: 1px; 
+  border-bottom-color:$background-color;
+}
+
 .dropbtn {
   background-color: $primary-color;
   padding: 16px;

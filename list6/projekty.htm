@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Projekty</title>
+</head>
+
+<body>
+    <nav>
+        <div class="wide-nav">
+            <a href="./index.htm">O mnie</a>
+            <a href="./projekty.htm">Projekty</a>
+            <a href="./zainteresowania.htm">Zainteresowania</a>
+            <a href="./kontakt.htm">Kontakt</a>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </button>
+            <div class="dropdown-content">
+                <a href="./index.htm">O mnie</a>
+                <a href="./projekty.htm">Projekty</a>
+                <a href="./zainteresowania.htm">Zainteresowania</a>
+                <a href="./kontakt.htm">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h2>
+                Moje projekty
+            </h2>
+            <div>
+                <h3>Trylma</h3>
+                <ul>
+                    <li>Gra dla maksymalnie sześciu graczy wykonana w technologii klient - serwer</li>
+                    <li>Java, Maven, Java FX</li>
+                </ul>
+                <h3>AlkoHurt</h3>
+                <ul>
+                    <li>Aplikacja webowa do zarządzania bazą danych hurtowni alkoholi</li>
+                    <li>JavaScript, HTML, CSS, Express.js, Node.js, MariaDB</li>
+                </ul>
+                <h3>Jechane</h3>
+                <ul>
+                    <li>Aplikacja mobilna agregująca lokalizację pojazdów z serwisów Vozilla, Trafficar i NextBike</li>
+                    <li>Java, Android</li>
+                </ul>
+            </div>
+            <h2>
+                Przykład użycia mojego ulubionego programu <em>sed</em>
+            </h2>
+
+            <pre><code>ls | sed 's/\(.*\)/"\1"/' | sed 'p;s/\(.*\)/\L\1/' | xargs -n2 mv -n --</code></pre>
+            <span id="timer"></span>
+        </article>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Homepage</title>
+</head>
+
+<body>
+    <nav>
+        <div class="wide-nav">
+            <a href="./index.htm">O mnie</a>
+            <a href="./projekty.htm">Projekty</a>
+            <a href="./zainteresowania.htm">Zainteresowania</a>
+            <a href="./kontakt.htm">Kontakt</a>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                    <div class="hamburger"></div>
+                    <div class="hamburger"></div>
+                    <div class="hamburger"></div>
+            </button>
+            <div class="dropdown-content">
+                <a href="./index.htm">O mnie</a>
+                <a href="./projekty.htm">Projekty</a>
+                <a href="./zainteresowania.htm">Zainteresowania</a>
+                <a href="./kontakt.htm">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h2>
+                O mnie
+            </h2>
+            <div class="about">
+                <img src="mock.jpg" alt="Foto" />
+                <p>
+                    Jestem inżynierantem trzeciego roku na kierunku Informatyka na
+                    Wydziale Podstawowych Problemów Techniki Politechniki Wrocławskiej.
+                    Moje zainteresowania to matematyka i piesze wycieczki górskie.
+                </p>
+            </div>
+            <span id="timer"></span>
+        </article>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
