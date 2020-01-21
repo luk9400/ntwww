@@ -1,0 +1,165 @@
+$background-color: #404040;
+$primary-color: #8c8c8c;
+$secondary-color: #bfbfbf;
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-colum {
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Roboto Mono", monospace;
+}
+
+body {
+  margin: 0px;
+  background-color: $background-color;
+}
+
+.hamburger {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
+
+.wide-nav {
+  display: none;
+}
+
+.dropbtn {
+  background-color: $primary-color;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    .dropdown-content {
+      display: block;
+    }
+
+    .dropbtn {
+      background-color: $secondary-color;
+    }
+  }
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: $secondary-color;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+
+  a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+}
+
+pre {
+  overflow-x: auto;
+  max-width: 80%;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+article {
+  @include flex-colum();
+  background-color: $primary-color;
+  margin: 20px;
+  padding: 10px;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  margin: 10px;
+}
+
+.about {
+  @include flex-colum();
+  justify-content: center;
+}
+
+h3,
+h2 {
+  margin: 10px;
+}
+
+span {
+  font-size: small;
+}
+
+@media only screen and (min-width: 720px) {
+  .about {
+    @include flex-row();
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .about {
+    @include flex-row();
+  }
+
+  .wide-nav {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  nav {
+    .wide-nav {
+      a {
+        margin: auto;
+        padding: 12px;
+        text-decoration: none;
+        text-align: center;
+        flex-grow: 1;
+
+        &:hover {
+          background-color: $secondary-color;
+        }
+
+        &:link {
+          color: inherit;
+        }
+
+        &:visited {
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  .dropdown {
+    display: none;
+  }
+}
